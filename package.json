@@ -1,13 +1,13 @@
 {
   "name": "publish-push",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "用于发布npm包",
   "main": "index.js",
   "scripts": {
-    "start": "node ./bin/publishPub.js"
+    "start": "node ./bin/publish-push.js"
   },
   "bin": {
-    "publish-push": "./bin/publishPub.js"
+    "publish-push": "./bin/publish-push.js"
   },
   "repository": {
     "type": "git",
