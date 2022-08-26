@@ -1,0 +1,32 @@
+{
+  "name": "publish-push",
+  "version": "0.0.1",
+  "description": "用于发布npm包",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/publishPub.js"
+  },
+  "bin": {
+    "publish-push": "./bin/publishPub.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HowCanLove/publish-push.git"
+  },
+  "keywords": [
+    "publish-push"
+  ],
+  "type": "module",
+  "author": "liukai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HowCanLove/publish-push/issues"
+  },
+  "homepage": "https://github.com/HowCanLove/publish-push#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "inquirer": "^9.1.0",
+    "moment": "^2.29.4",
+    "shelljs": "^0.8.5"
+  }
+}
