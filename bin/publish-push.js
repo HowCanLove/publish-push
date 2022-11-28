@@ -38,7 +38,8 @@ async function pub() {
         .replace(/[^\d\.]/g, "")
         .split(".")
         .pop() + 1;
-    const newVersionLine = versionLine.replace(/.d*"$/, `${nextVersion}"`);
+    const newVersionLine = versionLine.replace(/\d+"$/, `${nextVersion}"`);
+
     const newPackage = packageResult.replace(versionLine, newVersionLine);
 
     const { updateCommit, addToReadme } = await inquirer.prompt(promptList);
