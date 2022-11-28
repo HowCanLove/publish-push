@@ -33,7 +33,11 @@ async function pub() {
   const versionLineMatch = packageResult.match(/version[^,]*/);
   if (Array.isArray(versionLineMatch)) {
     const versionLine = versionLineMatch[0];
-    const nextVersion = +versionLine.match(/.d*"$/)[0].replace(/\D/g, "") + 1;
+    const nextVersion =
+      +versionLine
+        .replace(/[^\d\.]/g, "")
+        .split(".")
+        .pop() + 1;
     const newVersionLine = versionLine.replace(/.d*"$/, `${nextVersion}"`);
     const newPackage = packageResult.replace(versionLine, newVersionLine);
 
