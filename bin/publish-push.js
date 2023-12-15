@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { appendFileSync, readFileSync, readdirSync, writeFileSync } from "fs";
 import inquirer from "inquirer";
-import moment from "moment";
 import shell from "shelljs";
 
 const { exec } = shell;
@@ -52,12 +51,12 @@ async function pub() {
 			if (!readmeFileContent.includes("## 更新备注")) {
 				appendFileSync(readmePath, "\n## 更新备注\n  \n");
 			}
-
 			appendFileSync(
 				readmePath,
-				`${newVersionLine.replace(/[^\d^.]/g, "")} ---------- ${moment().format(
-					"YYYY-MM-DD HH:mm:ss"
-				)}  \n`
+				`${newVersionLine.replace(
+					/[^\d^.]/g,
+					""
+				)} ---------- ${new Date().toLocaleString()}  \n`
 			);
 			appendFileSync(readmePath, `更新内容: ${updateCommit}  \n`);
 		}
