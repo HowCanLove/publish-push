@@ -3,7 +3,7 @@ import { appendFileSync, readFileSync, readdirSync, writeFileSync } from "fs";
 import inquirer from "inquirer";
 import shell from "shelljs";
 
-const { exec } = shell;
+const { exec, echo } = shell;
 const promptList = [
 	{
 		type: "input",
@@ -28,18 +28,20 @@ async function pub() {
 	const readmeFile = currentFiles.find((i) => /readme.md/i.test(i));
 	let readmePath = readmeFile ? `${currentDir}/${readmeFile}` : "";
 
-	const packageResult = readFileSync(packagePath, "utf-8");
-	const versionLineMatch = packageResult.match(/version[^,]*/);
-	if (Array.isArray(versionLineMatch)) {
-		const versionLine = versionLineMatch[0];
-		const nextVersion =
-			+versionLine
-				.replace(/[^\d\.]/g, "")
-				.split(".")
-				.pop() + 1;
-		const newVersionLine = versionLine.replace(/\d+"$/, `${nextVersion}"`);
+	let packageResult;
+	try {
+		packageResult = JSON.parse(readFileSync(packagePath, "utf-8"));
+	} catch (error) {
+		echo("package.json 文件解析异常");
+		return;
+	}
 
-		const newPackage = packageResult.replace(versionLine, newVersionLine);
+	if (packageResult.version) {
+		const versionList = packageResult.version.split(".");
+		versionList[versionList.length - 1] =
+			+versionList[versionList.length - 1] + 1;
+		const nextVersion = versionList.join(".");
+		packageResult.version = nextVersion;
 
 		const { updateCommit, addToReadme } = await inquirer.prompt(promptList);
 		if (updateCommit && addToReadme) {
@@ -60,9 +62,14 @@ async function pub() {
 			);
 			appendFileSync(readmePath, `更新内容: ${updateCommit}  \n`);
 		}
-		writeFileSync(packagePath, newPackage);
+		writeFileSync(
+			packagePath,
+			JSON.stringify(packageResult, "", "\t"),
+			"utf-8"
+		);
 		// 获取当前分支名称，提交上去
 		const branch = exec("git rev-parse --abbrev-ref HEAD");
+		!!packageResult.scripts?.build && exec("npm run build");
 		exec("npm publish");
 		exec("git status");
 		exec("git add .");
