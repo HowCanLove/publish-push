@@ -1,31 +1,31 @@
 {
-  "name": "publish-push",
-  "version": "0.0.8",
-  "description": "用于发布npm包",
-  "main": "index.js",
-  "scripts": {
-    "start": "node ./bin/publish-push.js"
-  },
-  "bin": {
-    "publish-push": "./bin/publish-push.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HowCanLove/publish-push.git"
-  },
-  "keywords": [
-    "publish-push"
-  ],
-  "type": "module",
-  "author": "liukai",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/HowCanLove/publish-push/issues"
-  },
-  "homepage": "https://github.com/HowCanLove/publish-push#readme",
-  "dependencies": {
-    "fs": "^0.0.1-security",
-    "inquirer": "^9.1.0",
-    "shelljs": "^0.8.5"
-  }
+	"name": "publish-push",
+	"version": "0.0.9",
+	"description": "用于发布npm包",
+	"main": "index.js",
+	"scripts": {
+		"start": "node ./bin/publish-push.js"
+	},
+	"bin": {
+		"publish-push": "./bin/publish-push.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/HowCanLove/publish-push.git"
+	},
+	"keywords": [
+		"publish-push"
+	],
+	"type": "module",
+	"author": "liukai",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/HowCanLove/publish-push/issues"
+	},
+	"homepage": "https://github.com/HowCanLove/publish-push#readme",
+	"dependencies": {
+		"fs": "^0.0.1-security",
+		"inquirer": "^9.1.0",
+		"shelljs": "^0.8.5"
+	}
 }
