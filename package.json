@@ -1,6 +1,6 @@
 {
 	"name": "publish-push",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "用于发布npm包",
 	"main": "index.js",
 	"scripts": {

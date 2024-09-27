@@ -55,10 +55,7 @@ async function pub() {
 			}
 			appendFileSync(
 				readmePath,
-				`${newVersionLine.replace(
-					/[^\d^.]/g,
-					""
-				)} ---------- ${new Date().toLocaleString()}  \n`
+				`${nextVersion} ---------- ${new Date().toLocaleString()}  \n`
 			);
 			appendFileSync(readmePath, `更新内容: ${updateCommit}  \n`);
 		}
